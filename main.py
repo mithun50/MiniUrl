@@ -4,6 +4,7 @@ import setup_database
 from bot import start_bot
 from server import start_flask
 from add_admin import add_admin
+import os
 
 def run_all():
     # Set up the database
