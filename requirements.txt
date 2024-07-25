@@ -1,6 +1,6 @@
-Flask==2.3.4
-python-telegram-bot==20.3.1
-bcrypt==4.0.1
-pytz==2024.1
-validators==0.20.2
-pyTelegramBotAPI==4.10.0
+Flask
+python-telegram-bot
+bcrypt
+pytz
+validators
+pyTelegramBotAPI
