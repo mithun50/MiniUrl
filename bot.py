@@ -6,8 +6,6 @@ import sqlite3
 from datetime import datetime
 import pytz  # For timezone handling
 import os
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-
 API_TOKEN = os.getenv('TGBToken')
 bot = telebot.TeleBot(API_TOKEN)
 # Update this to your actual server URL if hosted elsewhere
@@ -55,11 +53,15 @@ def send_welcome(message):
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     
     # Create inline keyboard
-    keyboard = InlineKeyboardMarkup()
-    button1 = InlineKeyboardButton("FollowUs", callback_data="https://www.instagram.com/kannadagamershub)
-    button2 = InlineKeyboardButton("ContactUs", callback_data="mithungowda.b7411@gmail.com")
-    button3 = InlineKeyboardButton("Subscribe Our Channel", callback_data="https://youtube.com/@kannadagamershub")
-    keyboard.add(button1, button2, button3)
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton("\U0001F5BC Instagram", url="https://www.instagram.com/kannadagamershub"),
+        telebot.types.InlineKeyboardButton("🌐 Website", url="https://kannadagamershub.000webhostapp.com")
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton("\U0001F3A5 YouTube Channel", url="https://www.youtube.com/@KannadaGamershub"),
+        telebot.types.InlineKeyboardButton("\U0001F4F1 WhatsApp Channel", url="https://whatsapp.com/channel/0029VaU05uG9RZAeiXKyEu06")
+    )
     
     # Send message with inline keyboard
     bot.reply_to(message, f"{greeting}, {user_name}!\nThe current IST time is {current_time}.\nSend Url To Be Shorten:.", reply_markup=keyboard)
