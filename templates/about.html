@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .logo {
+            width: 50px; /* Adjust the size as needed */
+            height: auto;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: device-width;
+            max-width: device-width;
+            margin: auto;
+            flex: 1;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+    background: linear-gradient(135deg, #f3a683, #f7b7a3);;
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+    font-size: 0.9rem;
+    margin-top: auto;
+        }
+    .header-title {
+            flex: 1;
+            /* Allows the title to take up available space */
+            font-size: 1.5rem;
+            /* Adjust font size as needed */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo" class="logo">
+        <div class="header-title">
+            MiniUrl
+        </div>
+        <!-- Replace with your logo file -->
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contactus">Contact Us</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>
+            Welcome to our URL Shortener service! We provide a simple and effective way to shorten long URLs, making them easier to share and manage. Our tool is designed with ease of use in mind, ensuring you get a shortened link quickly and efficiently.
+        </p>
+        <p>
+            Our service is reliable and secure, aiming to enhance your online experience by offering a streamlined URL shortening process. Whether you're sharing links on social media, in emails, or on any other platform, our URL Shortener is here to help.
+        </p>
+        <p>
+            For more information, please feel free to <a href="contactus.html">contact us</a>.
+        </p>
+    </div>
+    <footer>
+    &copy; 2024 Your MiniUrl. All rights reserved.
+</footer>
+</body>
+</html>

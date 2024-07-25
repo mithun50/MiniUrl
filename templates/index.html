@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .logo {
+            width: 50px;
+            /* Adjust the size as needed */
+            height: auto;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: device-width;
+            max-width: device-width;
+            margin: auto;
+            flex: 1;
+        }
+        h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #f3a683;
+            outline: none;
+        }
+        button {
+            background-color: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff3f3f;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        #copy-button {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #copy-button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);;
+            padding: 10px 15px;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            color: #333;
+            font-size: 0.9rem;
+            margin-top: auto;
+            /* Ensures it sticks to the bottom if flexbox is used */
+        }
+
+        .header-title {
+            flex: 1;
+            /* Allows the title to take up available space */
+            font-size: 1.5rem;
+            /* Adjust font size as needed */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <img src="/static/logo.png" alt="Logo" class="logo">
+        <div class="header-title">
+            MiniUrl
+        </div>
+
+        <!-- Replace with your logo file -->
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contactus">Contact Us</a>
+
+        </nav>
+    </header>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form method="post">
+            <label for="original_url">Enter the URL to shorten:</label>
+            <input type="text" id="original_url" name="original_url" required>
+            <button type="submit">Shorten</button>
+        </form>
+
+        {% if short_url %}
+        <h2>Your shortened URL:</h2>
+        <p>
+            <a id="short-url" href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </p>
+        <button id="copy-button">Copy to Clipboard</button>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-button');
+            const shortUrlElement = document.getElementById('short-url');
+
+            if (copyButton && shortUrlElement) {
+                copyButton.addEventListener('click', function() {
+                    // Create a temporary input element to use for copying
+                    const tempInput = document.createElement('input');
+                    tempInput.value = shortUrlElement.href;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+
+                    // Provide feedback to the user
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy to Clipboard';
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+    <footer>
+        &copy; 2024 MiniUrl. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .logo {
+            width: 50px; /* Adjust the size as needed */
+            height: auto;
+        }
+        .header-title {
+            flex: 1; /* Allows the title to take up available space */
+            font-size: 1.5rem; /* Adjust font size as needed */
+            color: #333;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            max-width: device-width;
+            width: device-width;
+            flex: 1;
+        }
+        h2, h3 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #e1e1e1;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f3a683;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f7b7a3;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .logout-button {
+            display: inline-block;
+            background-color: #ff3f3f; /* Red background */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .logout-button:hover {
+            background-color: #ff6b6b; /* Darker red on hover */
+        }
+        footer {
+            background: linear-gradient(135deg, #f3a683, #f7b7a3);
+            padding: 10px 15px;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            color: #333;
+            font-size: 0.9rem;
+        }
+        button {
+    background-color: #3498db; /* Blue button color */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo" class="logo"> <!-- Replace with your logo file -->
+        <div class="header-title">
+            MiniUrl
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contactus">Contact</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Admin Panel</h2>
+        <p>Total links shortened: {{ total_links }}</p>
+        <p>Total Telegram users: {{ total_users }}</p>
+        <h3>Telegram Users</h3>
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Links Shortened</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/logout" class="logout-button">Logout</a>
+        <!-- Download Database Button -->
+<a href="/download_db">
+    <button>Download Database</button>
+</a>
+    </div>
+    <footer>
+        &copy; 2024 Your Company Name. All rights reserved.
+    </footer>
+</body>
+</html>
