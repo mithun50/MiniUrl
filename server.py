@@ -100,7 +100,7 @@ def redirect_url(short_code):
         return 'URL not found', 404
 
 def start_flask():
-    app.run(debug=True, use_reloader=False, port=8080)  # Disable the reloader in a threaded environment
+    app.run(host="0.0.0.0", port=8000, debug=True, use_reloader=False)  # Disable the reloader in a threaded environment
 
 if __name__ == '__main__':
     start_flask()
