@@ -4,3 +4,5 @@ bcrypt
 pytz
 validators
 pyTelegramBotAPI
+requests
+email-validator
