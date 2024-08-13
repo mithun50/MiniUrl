@@ -1,5 +1,6 @@
 Flask
 flask-core
+flask-cors
 python-telegram-bot
 bcrypt
 pytz
