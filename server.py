@@ -8,10 +8,15 @@ from datetime import datetime
 from contextlib import closing
 import re
 import requests
+from flask_cors import CORS 
 from email_validator import validate_email, EmailNotValidError
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24).hex()  # Use a secure key in production
+app.secret_key = os.urandom(24).hex() 
+# Use a secure key in production
+
+
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Allow all origins for API routes
 
 # Helper function to validate email addresses
 def is_valid_url(url):
@@ -144,7 +149,33 @@ def redirect_url(short_code):
     if original_url:
         return redirect(original_url)
     else:
-        return 'URL not found', 404
+        return 'URL not found', 404@app.route('/api/shorten', methods=['POST'])
+def api_shorten_url():
+    data = request.json
+    original_url = data.get('longUrl')
+
+    if not original_url:
+        return jsonify({'error': 'No long URL provided'}), 400
+
+    if not is_valid_url(original_url):
+        return jsonify({'error': 'The URL is not valid or not reachable'}), 400
+
+    if not is_valid_urli(original_url):
+        return jsonify({'error': 'URL must start with http:// or https://'}), 400
+
+    short_code = shorten_url(original_url, 'website')
+    short_url = url_for('redirect_url', short_code=short_code, _external=True)
+
+    return jsonify({'shortUrl': short_url})
+
+
+
+
+
+
+
+
+
 
 def start_flask():
     app.run(host="0.0.0.0", port=8000, debug=True, use_reloader=False)  # Disable the reloader in a threaded environment
