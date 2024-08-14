@@ -158,12 +158,6 @@ def api_shorten_url():
     if not original_url:
         return jsonify({'error': 'No long URL provided'}), 400
 
-    if not is_valid_url(original_url):
-        return jsonify({'error': 'The URL is not valid or not reachable'}), 400
-
-    if not is_valid_urli(original_url):
-        return jsonify({'error': 'URL must start with http:// or https://'}), 400
-
     short_code = shorten_url(original_url, 'website')
     short_url = url_for('redirect_url', short_code=short_code, _external=True)
 
