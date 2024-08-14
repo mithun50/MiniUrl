@@ -149,7 +149,8 @@ def redirect_url(short_code):
     if original_url:
         return redirect(original_url)
     else:
-        return 'URL not found', 404@app.route('/api/shorten', methods=['POST'])
+        return 'URL not found', 404
+@app.route('/api/shorten', methods=['POST'])
 def api_shorten_url():
     data = request.json
     original_url = data.get('longUrl')
