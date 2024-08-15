@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session, url_for, send_file, flash
+from flask import Flask, request, redirect, render_template, session, url_for, send_file, flash, jsonify
 from shortener import get_original_url, shorten_url
 import sqlite3
 import os
