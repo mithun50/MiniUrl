@@ -41,6 +41,22 @@ def is_valid_urli(url):
     # Ensure the URL starts with http or https and is reachable
     return url.startswith(('http://', 'https://')) 
 
+@app.route('/api/shorten', methods=['POST'])
+def api_shorten_url():
+    data = request.json
+    print(f"Received data: {data}")  # Log the received data
+    original_url = data.get('longUrl')
+
+    if not original_url:
+        return jsonify({'error': 'No long URL provided'}), 400
+
+    try:
+        short_code = shorten_url(original_url, 'website')
+        short_url = url_for('redirect_url', short_code=short_code, _external=True)
+        return jsonify({'shortUrl': short_url})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     short_url = None
@@ -150,24 +166,15 @@ def redirect_url(short_code):
         return redirect(original_url)
     else:
         return 'URL not found', 404
-@app.route('/api/shorten', methods=['POST'])
-def api_shorten_url():
-    data = request.json
-    original_url = data.get('longUrl')
-
-    if not original_url:
-        return jsonify({'error': 'No long URL provided'}), 400
-
-    short_code = shorten_url(original_url, 'website')
-    short_url = url_for('redirect_url', short_code=short_code, _external=True)
-
-    return jsonify({'shortUrl': short_url})
 
 
 
 
 
 
+@app.route('/test', methods=['GET'])
+def test():
+    return 'Test endpoint is working!'
 
 
 
