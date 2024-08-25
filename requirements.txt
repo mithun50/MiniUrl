@@ -8,3 +8,4 @@ validators
 pyTelegramBotAPI
 requests
 email-validator
+pyngrok
